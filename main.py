@@ -43,7 +43,7 @@ def main(dataset, img_size, categories, hidden_layers):
             print(i, error)
     print(i, error)
 
-    np.save('weights.npy', net.weights)
+    net.save('weights.npy')
 
     images = [['images/%s/test/%s/' % (dataset, categories[i]) + a for a in
                os.listdir('images/%s/test/%s/' % (dataset, categories[i]))]
