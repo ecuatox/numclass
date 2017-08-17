@@ -37,4 +37,4 @@ class Net:
             errors[i-1] = deltas[i].dot(self.weights[i-1].T)
 
         for i in range(len(self)-2, -1, -1):
-            self.weights[i] += self.layers[i].T.dot(deltas[i+1])
+            self.weights[i] += self.layers[i].T.dot(deltas[i+1]) * 0.1
