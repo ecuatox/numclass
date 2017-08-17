@@ -1,7 +1,6 @@
 import os
 from PIL import Image
 import numpy as np
-from net import sigmoid
 
 
 def read_image(filename, resize=None):

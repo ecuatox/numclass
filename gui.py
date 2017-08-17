@@ -1,7 +1,6 @@
 from tkinter import *
 from net import *
 from PIL import Image
-import math, os
 
 def draw(event, size=20):
     prediction['text'] = ''
