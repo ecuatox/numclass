@@ -1,9 +1,9 @@
 # Number Classification
 Number classification with neural net
 
-# Example
 Run `python gui.py` to open interface
 
+# Example
 ![gui.png](https://raw.githubusercontent.com/ecuatox/numclass/master/images/gui.png)
 
 # Thanks to
