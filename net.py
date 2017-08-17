@@ -15,6 +15,9 @@ class Net:
     def __len__(self):
         return len(self.layer_sizes)
 
+    def shuffle(self):
+        self.weights = np.array([2 * np.random.rand(self.layer_sizes[i], self.layer_sizes[i + 1]) - 1 for i in range(len(self.layer_sizes) - 1)])
+
     def run(self, x):
         self.layers = [None for _ in self.layer_sizes]
         self.layers[0] = np.array(x)
