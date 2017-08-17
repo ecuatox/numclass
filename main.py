@@ -1,6 +1,7 @@
 import os
 from net import *
 from image import *
+from datetime import datetime
 
 def fprint(f, txt):
     f.write(txt + '\n')
@@ -35,6 +36,7 @@ def main(dataset, img_size, categories, hidden_layers):
 
     error = 1.0
     i = -1
+    #while datetime.now().hour <= 18:
     while error > 0.0005:
         i += 1
         net.train(input_data, output_data)
