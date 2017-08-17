@@ -21,7 +21,7 @@ def run():
     output = net.run(data)
     index = list(output).index(max(output))
     prediction['text']  = index
-    certainty['text'] = output[index]
+    certainty['text'] = '{0:.9f}'.format(output[index])
 
     """num = 9
     path = 'images/8px_2/test/%r/' % num
