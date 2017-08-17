@@ -15,6 +15,18 @@ class Net:
     def __len__(self):
         return len(self.layer_sizes)
 
+    def save(self, filename):
+        np.save(filename, self.weights)
+
+    @staticmethod
+    def load(filename):
+        weights = np.load(filename)
+        layer_sizes = [len(a) for a in weights]
+        layer_sizes.append(len(weights[-1][0]))
+        net = Net(layer_sizes)
+        net.weights = weights
+        return net
+
     def shuffle(self):
         self.weights = np.array([2 * np.random.rand(self.layer_sizes[i], self.layer_sizes[i + 1]) - 1 for i in range(len(self.layer_sizes) - 1)])
 
