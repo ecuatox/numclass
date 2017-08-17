@@ -6,6 +6,12 @@ def fprint(f, txt):
     f.write(txt + '\n')
     print(txt)
 
+def predict(weights_filename, image_filename, image_size):
+    net = Net.load(weights_filename)
+    output = net.run(read_image(image_filename, image_size))
+    index = list(output).index(max(output))
+    return index, output[index]
+
 def main(dataset, img_size, categories, hidden_layers):
     layers = [int(img_size[0]*img_size[1])]
     layers.extend(hidden_layers)
@@ -45,3 +51,4 @@ def main(dataset, img_size, categories, hidden_layers):
 
 
 main('16px', (8, 8), list(map(str, range(10))), [32, 16])
+#print(predict('trained_weights.npy', 'images/16px/test/3/0.png', (8, 8)))
