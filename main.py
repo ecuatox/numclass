@@ -1,6 +1,5 @@
-import os
 from net import *
-from image import *
+from data import *
 from datetime import datetime
 
 def fprint(f, txt):
@@ -13,27 +12,9 @@ def main(dataset, img_size, categories, hidden_layers):
     layers.append(len(categories))
     net = Net(layers)
 
-    images = [['images/%s/learn/%s/' % (dataset, categories[i]) + a for a in os.listdir('images/%s/learn/%s/' % (dataset, categories[i]))] for i in range(len(categories))]
-    size = min(map(len, images))
-    values = [[read_image(img, img_size) for img in images[i][:size]] for i in range(len(categories))]
-
-    input_data, output_data = [], []
-
-    for i in range(len(categories)):
-        input_data.extend(values[i])
-
-    for i in range(len(categories)):
-        output = np.zeros(len(categories))
-        output[i] = 1
-        output_data.extend([output for _ in range(size)])
-
-    output_data = np.array(output_data)
-
-    np.random.seed(0)
-    np.random.shuffle(input_data)
-    np.random.seed(0)
-    np.random.shuffle(output_data)
-
+    # Train neural network with train-data
+    input_data, output_data = load_training_data(dataset, categories, img_size)
+    print('Iteration'.ljust(9), 'Error')
     error = 1.0
     i = -1
     #while datetime.now().hour <= 18:
@@ -42,16 +23,14 @@ def main(dataset, img_size, categories, hidden_layers):
         net.train(input_data, output_data)
         error = net.mean_error(output_data)
         if i % 10000 == 0:
-            print(i, error)
-    print(i, error)
+            print(str(i).rjust(9), '{0:.9f}'.format(error))
+    print(str(i).rjust(9), '{0:.9f}'.format(error))
 
+    # Save neural network
     net.save('weights.npy')
 
-    images = [['images/%s/test/%s/' % (dataset, categories[i]) + a for a in
-               os.listdir('images/%s/test/%s/' % (dataset, categories[i]))]
-              for i in range(len(categories))]
-    values = [[read_image(img, img_size) for img in images[i][:size]]
-              for i in range(len(categories))]
+    # Test neural network with test-data
+    values = load_testing_data(dataset, categories, img_size)
     print()
     with open('result.txt', 'w') as f:
         fprint(f, ''.join(map(lambda a: a.rjust(8, ' '), categories)))
