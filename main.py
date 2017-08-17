@@ -63,4 +63,4 @@ def main(dataset, img_size, categories, hidden_layers):
                 fprint(f, categories[i].ljust(2, ' ') + ''.join([('x  ' if a >= 0.5 else '').rjust(8) for a in b]))
 
 
-main('numbers', (8, 8), list(map(str, range(10))), [16, 16])
+main('16px', (8, 8), list(map(str, range(10))), [32, 16])
