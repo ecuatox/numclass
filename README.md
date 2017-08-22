@@ -1,7 +1,7 @@
 # Number Classification
 Number classification with neural net
 
-Run `python gui.py` to open interface
+Try demo at [amund.io](http://amund.io/articles/1/)
 
 # Example
 ![gui.png](https://raw.githubusercontent.com/ecuatox/numclass/master/images/gui.png)

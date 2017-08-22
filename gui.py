@@ -24,7 +24,7 @@ def run():
     certainty['text'] = '{0:.9f}'.format(output[index])
 
     """num = 9
-    path = 'images/8px_2/test/%r/' % num
+    path = 'images/16px_2/test/%r/' % num
     files = os.listdir(path)
     if not files:
         next = 0
